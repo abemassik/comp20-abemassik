@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+        <meta charset="utf-8" />
+        <title>My Old Kentucky Home</title>
+        <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+        <h1 id="title">My Old Kentucky Home</h1>
+
+        <video src="https://www.cs.tufts.edu/comp/20/my_old_kentucky_home.mp4" id="music_video" controls></video>
+        <div id="lyrics"></div>
+
+<script>
+        // Complete this section and create a CSS file named style.css
+        lyrics = ["The sun shines bright in My Old Kentucky Home,\n" +
+                  "\'Tis summer, the people are gay\n" +
+                  "The corn-top\'s ripe and the meadow\'s in the bloom\/" +
+                  "While the birds make music all the day.",
+
+                  "The young folks roll on the little cabin floor,\n" +
+                  "All merry, all happy and bright;\n" +
+                  "By 'n' by hard times comes a knocking at the door,\n" +
+                  "Then My Old Kentucky Home, good night!" ,
+
+                  "Weep no more my lady\n" +
+                  "Oh weep no more today;\n" +
+                  "We will sing one song\n" +
+                  "For My Old Kentucky Home\n" +
+                  "For My Old Kentucky Home, far away" ];
+
+        
+        document.getElementById("music_video");
+
+        function showLyrics () {
+                document.getElementById("lyrics").innerHTML = "<p>This is where lyrics go</p>";
+        }
+
+
+
+
+ 
+</script>
+
+</body>
+</html>

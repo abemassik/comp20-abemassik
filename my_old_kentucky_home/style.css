@@ -1,0 +1,21 @@
+h1 {
+        font-family: "Arial", Arial, sans-sarif;
+        text-align: center;
+        border-style: inset;
+        border-color: blue;
+        padding: 10px;
+}
+
+video {
+        padding: 10px;
+        border-style: outset;
+        border-color: green;
+}
+
+div {
+        font-family: "Times", Times, serif;
+        font-size: 16px;
+        color: black;
+        border-style: outset;
+        botder-color: green;
+}
