@@ -16,33 +16,77 @@
 
 <script>
         // Complete this section and create a CSS file named style.css
-        lyrics = ["The sun shines bright in My Old Kentucky Home,\n" +
-                  "\'Tis summer, the people are gay\n" +
-                  "The corn-top\'s ripe and the meadow\'s in the bloom\/" +
+        lyr = ["The sun shines bright in My Old Kentucky Home,<br>" +
+                  "\'Tis summer, the people are gay<br>" +
+                  "The corn-top\'s ripe and the meadow\'s in the bloom<br>" +
                   "While the birds make music all the day.",
 
-                  "The young folks roll on the little cabin floor,\n" +
-                  "All merry, all happy and bright;\n" +
-                  "By 'n' by hard times comes a knocking at the door,\n" +
+                  "The young folks roll on the little cabin floor,<br>" +
+                  "All merry, all happy and bright;<br>" +
+                  "By 'n' by hard times comes a knocking at the door,<br>" +
                   "Then My Old Kentucky Home, good night!" ,
 
-                  "Weep no more my lady\n" +
-                  "Oh weep no more today;\n" +
-                  "We will sing one song\n" +
-                  "For My Old Kentucky Home\n" +
+                  "Weep no more my lady<br>" +
+                  "Oh weep no more today;<br>" +
+                  "We will sing one song<br>" +
+                  "For My Old Kentucky Home<br>" +
                   "For My Old Kentucky Home, far away" ];
 
         
-        document.getElementById("music_video");
+
+        var vid = document.getElementById("music_video");
+        var lyrics = document.getElementById("lyrics");
+
+        var disp = document.createElement("p");
+        lyrics.appendChild(disp);
+
+        var anno = document.createElement("IMG");
+        lyrics.appendChild(anno);
+
+        var verse1start = 10;
+        var verse1end = 34;
+        var verse2start = 36;
+        var verse2end = 62;
+        var verse3start = 64;
+        var verse3end = 92;
+
+
 
         function showLyrics () {
-                document.getElementById("lyrics").innerHTML = "<p>This is where lyrics go</p>";
+                if (vid.currentTime > verse1start && vid.currentTime < verse1end){
+                        disp.innerHTML = lyr[0];
+                }
+
+                if (vid.currentTime > verse1end && vid.currentTime < verse2start){
+                        anno.setAttribute("src", "https://cdn.shopify.com/s/files/1/1365/2497/products/horse-mask_stable_grande.jpg?v=1470256181");
+                        anno.setAttribute("alt", "Horse Mask");
+                        disp.innerHTML = "";
+                }
+
+                if (vid.currentTime > verse2start && vid.currentTime < verse2end){
+                        disp.innerHTML = lyr[1];
+                        anno.setAttribute("src", "");
+                        anno.setAttribute("alt", "");
+                }
+
+                if (vid.currentTime > verse2end && vid.currentTime < verse3start){
+                        anno.setAttribute("src", "http://media4.s-nbcnews.com/i/newscms/2016_30/1145718/home-holiday-to-do-today-160725-tease-01_bfe2763c6779cbd2a90c21de48b07757.jpg");
+                        anno.setAttribute("alt", "House");
+                        disp.innerHTML = "";
+                }
+
+                if (vid.currentTime > verse3start && vid.currentTime < verse3end){
+                        disp.innerHTML = lyr[2];
+                        anno.setAttribute("src", "");
+                        anno.setAttribute("alt", "");
+                }
+
         }
 
+        vid.addEventListener("timeupdate", showLyrics);
+        
 
-
-
- 
+        
 </script>
 
 </body>
