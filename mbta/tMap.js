@@ -6,24 +6,26 @@ var porter = new google.maps.LatLng(42.3884, -71.11914899999999);
 var harvard = new google.maps.LatLng(42.373362, -71.118956);
 
 var options = {
-        center: southStation,
+        center: andrew,
         zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP
 }
 
-function createMap() {         var map = new
-google.maps.Map(document.getElementById('map'), options);
+function createMap() {         
+        var map = new google.maps.Map(document.getElementById('map'), options);
 
         var southStationM = new google.maps.Marker({
                 position:southStation,
                 title: "South Station"
         });
         southStationM.setMap(map);
+        
+        // google.maps.event.addListener(southStationM, 'click', function {
+        //         infowindow.setContent('South Station');
+        //         infowindow.open(map, southStationM);
+        // });
 
-        var andrewM = new google.maps.Marker({
-                position: andrew,
-                title: Andrew
-        });
-        andrewM.setMap(map);
+
+        map.setZoom(12);
 }
 
