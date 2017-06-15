@@ -21,6 +21,15 @@ var ashmont = new google.maps.LatLng(42.284652, -71.06448899999999);
 var wollaston = new google.maps.LatLng(42.2665139, -71.0203369);
 var fields = new google.maps.LatLng(42.300093, -71.061667);
 var central = new google.maps.LatLng(42.365486, -71.103802);
+var braintree = new google.maps.LatLng(42.2078543, -71.0011385);
+
+var route = [alewife, davis, porter, harvard, central, kendall, charlesMGH,
+             parkSt, dtnCrs, southStation, broadway, andrew, umass,
+             northQuincy, wollaston, quincyCtr, quincyAdams, braintree];
+
+var branch = [umass, savin, fields, shawmut, ashmont];
+
+
 
 var options = {
         center: southStation,
@@ -28,74 +37,67 @@ var options = {
         mapTypeId: google.maps.MapTypeId.ROADMAP
 }
 
-function addStop (coord, name) {
-        var marker = new google.maps.Marker({
-                position:coord,
-                title: name,
-                map: map
-        });
-        var info = new google.maps.InfoWindow({
-                content: name
-        });
-        marker.addListener('click', function() {
-                info.open(map,marker);
-        })
-}
 
 function createMap() {         
         var map = new google.maps.Map(document.getElementById('map'), options);
 
+        
+
+
         addStop (southStation, "South Station");
+        addStop (andrew, "Andrew");
+        addStop (porter, "Porter Square");
+        addStop (harvard, "Harvard Square");
+        addStop (umass, "JFK/UMass");
+        addStop (savin, "Savin Hill");
+        addStop (parkSt, "Park Street");
+        addStop (broadway, "Broadway");
+        addStop (northQuincy, "North Quincy");
+        addStop (shawmut, "Shawmut");
+        addStop (davis, "Davis Square");
+        addStop (alewife, "Alewife");
+        addStop (kendall, "Kendall Square/MIT");
+        addStop (charlesMGH, "Charles/MGH");
+        addStop (dtnCrs, "Downtown Crossing");
+        addStop (quincyCtr, "Quincy Center");
+        addStop (quincyAdams, "Quincy Adams");
+        addStop (ashmont, "Ashmont");
+        addStop (wollaston, "Wollaston");
+        addStop (fields, "Fields Corner");
+        addStop (central, "Central Square");
+        addStop (braintree, "Braintree");
 
-        // var southStationM = new google.maps.Marker({
-        //         position:southStation,
-        //         title: "South Station",
-        //         map: map
-        // });
-        // southStationM.setMap(map);
-        // var southStationW = new google.maps.InfoWindow({
-        //         content: "South Station"
-        // });
-        // southStationM.addListener('click', function() {
-        //         southStationW.open(map,southStationM);
-        // })
+        var redLine = new google.maps.Polyline ({
+                path: route,
+                strokeColor: "#ef1a2c",
+                strokeWeight: 2,
+                map: map
+        });
 
-        // var andrewM = new google.maps.Marker({
-        //         position: andrew,
-        //         title: "Andrew"
-        // });
-        // andrewM.setMap(map);
-        // var andrewW = new google.maps.InfoWindow({
-        //         content: "Andrew"
-        // });
-        // andrewM.addListener('click', function() {
-        //         andrewW.open(map,andrewM);
-        // })
-
-        // var porterM = new google.maps.Marker({
-        //         position: porter,
-        //         title: "Porter Square"
-        // });
-        // porterM.setMap(map);
-        // var porterW = new google.maps.InfoWindow({
-        //         content: "Porter Square"
-        // });
-        // porterM.addListener('click', function() {
-        //         porterW.open(map,porterM);
-        // })
-
-        // var harvardM = new google.maps.Marker({
-        //         position: harvard,
-        //         title: "Harvard Square"
-        // });
-        // harvardM.setMap(map);
-        // var harvardW = new google.maps.InfoWindow({
-        //         content: "Harvard Square"
-        // });
-        // harvardM.addListener('click', function() {
-        //         harvardW.open(map,harvardM);
-        // })
+        var redLineBranch = new google.maps.Polyline ({
+                path: branch,
+                strokeColor: "#ef1a2c",
+                strokeWeight: 2,
+                map: map
+        });
 
 
+        
+        
+
+        function addStop (coord, name) {
+                var marker = new google.maps.Marker({
+                        position:coord,
+                        title: name,
+                        map: map,
+                        icon: 'favicon.ico'
+                });
+                var info = new google.maps.InfoWindow({
+                        content: name
+                });
+                marker.addListener('click', function() {
+                        info.open(map,marker);
+                })
+        }
 }
 
