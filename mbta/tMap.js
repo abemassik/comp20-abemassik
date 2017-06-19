@@ -102,30 +102,27 @@ function addStop (element, index, array) {
 }
 
 function addGeoLoc () {
-        navigator.geolocation.getCurrentPosition(findPosition);
-        
+        navigator.geolocation.getCurrentPosition(findPosition);   
 }
 
-function findClosest () {
-        closestStop = redLineStops[0];
-        closestDistance = google.maps.geometry.spherical.computeDistanceBetween(myPosition, closestStop.location);
-
-        for (var i = 0; i < redLineStops.length; i++) {
-                var currentDistance = google.maps.geometry.spherical.computeDistanceBetween(myPosition, redLineStops[i].position);
-                if (currentDistance < closestDistance) {
-                        closestStop = redLineStops[i];
-                        closestDistance = currentDistance;
-                }
-        }
-        console.log(closestStop.name);
-
-}
 
 function findPosition (position) {
         myPosition =  new google.maps.LatLng(position.coords.latitude, 
                 position.coords.longitude);
 
-        findClosest();
+        closestStop = redLineStops[0];
+        shortestDistance = 
+                google.maps.geometry.spherical.computeDistanceBetween(
+                        myPosition, redLineStops[0].location);
+        for (var i = 0; i < redLineStops.length; i++) {
+                currentDistance = 
+                        google.maps.geometry.spherical.computeDistanceBetween(
+                                myPosition, redLineStops[i].location);
+                if (currentDistance < shortestDistance) {
+                        shortestDistance = currentDistance;
+                        closestStop = redLineStops[i];
+                }
+        }
 
         var marker = new google.maps.Marker({
                 position: myPosition,
@@ -138,8 +135,20 @@ function findPosition (position) {
         marker.addListener('click', function() {
                 info.open(map,marker);
         });
+
+        var path = [myPosition, closestStop.location];
+
+        var poly = new google.maps.Polyline ({
+                path: path,
+                strokeWeight: 1,
+                strokeColor: "#190000",
+                map: map
+        });
 }
 
+function findClosest () {
+
+}
 
 
 
