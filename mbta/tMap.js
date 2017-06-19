@@ -108,24 +108,24 @@ function addGeoLoc () {
 
 function findClosest () {
         closestStop = redLineStops[0];
-        closestDistance = google.maps.geometry.spherical.computeDistanceBetween(
-                myPosition, closestStop.position);
+        closestDistance = google.maps.geometry.spherical.computeDistanceBetween(myPosition, closestStop.location);
 
         for (var i = 0; i < redLineStops.length; i++) {
-                var currentDistance = 
-                google.maps.geometry.spherical.computeDistanceBetween(
-                        myPosition, redLineStops[i].position);
+                var currentDistance = google.maps.geometry.spherical.computeDistanceBetween(myPosition, redLineStops[i].position);
                 if (currentDistance < closestDistance) {
                         closestStop = redLineStops[i];
                         closestDistance = currentDistance;
                 }
         }
+        console.log(closestStop.name);
 
 }
 
 function findPosition (position) {
         myPosition =  new google.maps.LatLng(position.coords.latitude, 
                 position.coords.longitude);
+
+        findClosest();
 
         var marker = new google.maps.Marker({
                 position: myPosition,
