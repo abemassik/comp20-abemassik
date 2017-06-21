@@ -3,7 +3,7 @@
 function parse() {
         call = new XMLHttpRequest();
 
-        call.open('GET', 'data.json', true);
+        call.open('GET', 'https://messagehub.herokuapp.com/messages.json', true);
 
         
         call.onreadystatechange = function() {

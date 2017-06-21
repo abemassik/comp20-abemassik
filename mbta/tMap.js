@@ -61,6 +61,8 @@ var options = {
 function createMap() {         
         map = new google.maps.Map(document.getElementById('map'), options);
 
+        getArrivals();
+
         makeRedLine();
 
         addGeoLoc();
@@ -94,7 +96,7 @@ function addStop (element, index, array) {
                 icon: 'favicon.ico'
         });
         var info = new google.maps.InfoWindow({
-                content: element.name
+                content: ""
         });
         marker.addListener('click', function() {
                 info.open(map,marker);
@@ -146,9 +148,38 @@ function findPosition (position) {
         });
 }
 
-function findClosest () {
+function getArrivals (stop) {
+        infoMessage = "Trains arriving in: ";
+
+        request = new XMLHttpRequest();
+
+        request.open('GET', 'https://defense-in-derpth.herokuapp.com/redline.json', true);
+
+        
+        request.onreadystatechange = function(stop) {
+                if (request.readyState == 4 && request.status == 200) {
+                        tripInfo = JSON.parse(request.responseText);
+
+                        
+                }
+                
+        }
+
+        request.send();
+
+        return infoMessage;
 
 }
+
+function formatTime (rawTime) {
+        minutes = Math.floor(rawTime/60);
+        seconds = rawTime - minutes*60;
+
+        return minutes.toString() + ":" + seconds.toString();
+}
+
+
+
 
 
 
