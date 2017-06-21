@@ -1,1 +1,15 @@
 /* Your CSS here... */
+
+html {
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#bubble {
+        border-color: #007aff;
+        background: #007aff;
+        padding: 3px;
+        border-style: solid;
+        color: white;
+        border-radius: 15px;
+}
+
