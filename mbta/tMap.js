@@ -99,6 +99,7 @@ function addStop (element, index, array) {
     });
     marker.addListener('click', function() {
         var message = getArrivals(element.name);
+        console.log(message);
         info.setContent(message);
         info.open(map,marker);
     });
@@ -167,22 +168,19 @@ function getArrivals (stop) {
                    predictions >= 0; predictions--) {
                 if (tripInfo.TripList.Trips[trips].Predictions[predictions].Stop
                     == stop) {
-                var seconds = tripInfo.TripList.Trips[trips].Predictions[predictions].Seconds;
-                var timeToArrival = convert(seconds);
+                seconds = tripInfo.TripList.Trips[trips].Predictions[predictions].Seconds;
+                timeToArrival = convert(seconds);
 
-                infoMessage += timeToArrival.toString() + "minutes ";
+                infoMessage += timeToArrival.toString() + "minutes\n";
 
                 }
                 }
             }
+            return infoMessage;
+            // console.log(infoMessage);
         }
-
     }
-
 request.send();
-
-console.log(infoMessage);
-
 }
 
 function convert(seconds) {
