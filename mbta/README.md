@@ -1,8 +1,8 @@
-Lab 8 README
+Lab 10 README
 
-1. Everything works, I would like to learn how to customize the icons better,
-   but it works and looks good now
+1. I am yet to get the schedule of arrivals to work. I can get them to output
+   to the console but i cannot get them to pop up as content of the info windows
 
-2. Only piazza and the average amount of googling as resources
+2. piazza
 
-3. 3-4 hours
+3. 6 hours
