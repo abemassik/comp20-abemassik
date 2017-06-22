@@ -32,9 +32,9 @@ redLineStops = [{name: "South Station", location: southStation},
 {name: "Broadway", location: broadway},
 {name: "North Quincy", location: northQuincy},
 {name: "Shawmut", location: shawmut},
-{name: "Davis Square", location: davis},
+{name: "Davis", location: davis},
 {name: "Alewife", location: alewife},
-{name: "Kendall Square/MIT", location: kendall},
+{name: "Kendall/MIT", location: kendall},
 {name: "Charles/MGH", location: charlesMGH},
 {name: "Downtown Crossing", location: dtnCrs},
 {name: "Quincy Center", location: quincyCtr},
@@ -115,18 +115,15 @@ function getArrivals (stop) {
                 }
             }
             // console.log(infoMessage);
-            // console.log(startingPoint);
             // return infoMessage;
         }
-        // if (infoMessage != startingPoint) {
-        //     console.log(infoMessage);
-        //     return infoMessage;
+        if (infoMessage != startingPoint) {
+            console.log(infoMessage);
+            return infoMessage;
 
-        // }
+        }
     }
 request.send();
-
-console.log(infoMessage);
 
 }
 
