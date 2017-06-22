@@ -87,45 +87,6 @@ function makeRedLine() {
     });
 }
 
-function getArrivals (stop) {
-    infoMessage = "Trains arriving to " + stop + " in:\n";
-    startingPoint = infoMessage;
-
-    request = new XMLHttpRequest();
-
-    request.open('GET', 'https://defense-in-derpth.herokuapp.com/redline.json', true);
-
-    request.onreadystatechange = function() {
-        if (request.readyState == 4 && request.status == 200) {
-            tripInfo = JSON.parse(request.responseText);
-
-            for (var trips = tripInfo.TripList.Trips.length - 1; 
-               trips >= 0; trips--) {
-                for (var predictions = 
-                   tripInfo.TripList.Trips[trips].Predictions.length - 1; 
-                   predictions >= 0; predictions--) {
-                if (tripInfo.TripList.Trips[trips].Predictions[predictions].Stop
-                    == stop) {
-                seconds = tripInfo.TripList.Trips[trips].Predictions[predictions].Seconds;
-                timeToArrival = convert(seconds);
-                infoMessage += timeToArrival + "minutes\n";
-
-
-                }
-                }
-            }
-            // console.log(infoMessage);
-            // return infoMessage;
-        }
-        if (infoMessage != startingPoint) {
-            console.log(infoMessage);
-            return infoMessage;
-
-        }
-    }
-request.send();
-
-}
 
 function addStop (element, index, array) {
     var marker = new google.maps.Marker({
@@ -138,10 +99,41 @@ function addStop (element, index, array) {
         content: ""
     });
     marker.addListener('click', function() {
-        var message = getArrivals(element.name);
-        info.setContent(message);
-        info.open(map,marker);
-    });
+        infoMessage = "Trains arriving to " + element.name + " in:\n";
+        startingPoint = infoMessage;
+
+        request = new XMLHttpRequest();
+
+        request.open('GET', 'https://defense-in-derpth.herokuapp.com/redline.json', true);
+
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                tripInfo = JSON.parse(request.responseText);
+
+                for (var trips = tripInfo.TripList.Trips.length - 1; 
+                 trips >= 0; trips--) {
+                    for (var predictions = 
+                     tripInfo.TripList.Trips[trips].Predictions.length - 1; 
+                     predictions >= 0; predictions--) {
+                        if (tripInfo.TripList.Trips[trips].Predictions[predictions].Stop
+                            == element.name) {
+                            seconds = tripInfo.TripList.Trips[trips].Predictions[predictions].Seconds;
+                        timeToArrival = convert(seconds);
+                        infoMessage += timeToArrival + " minutes\n";
+
+
+                    }
+                }
+            }
+        }
+        if (infoMessage != startingPoint) {
+            info.setContent(infoMessage);
+            info.open(map,marker);
+
+        }
+    }
+    request.send();
+});
 }
 
 function addGeoLoc () {
