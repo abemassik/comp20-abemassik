@@ -104,7 +104,7 @@ function addStop (element, index, array) {
 
         request = new XMLHttpRequest();
 
-        request.open('GET', 'https://defense-in-derpth.herokuapp.com/redline.json', true);
+        request.open('GET', 'https://tranquil-peak-84099.herokuapp.com/redline.json', true);
 
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
@@ -165,7 +165,7 @@ function findPosition (position) {
         map: map,
     });
     var info = new google.maps.InfoWindow({
-        content: "The closest stop is " + closestStop.name
+        content: "The closest stop is " + closestStop.name + "\n" + Math.floor(shortestDistance) + " meters away from you"
     });
     marker.addListener('click', function() {
         info.open(map,marker);
