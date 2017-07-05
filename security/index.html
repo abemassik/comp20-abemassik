@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<head>
+        <title>Security analysis report</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta charset="utf-8">
+</head>
+
+<body>
+        <h1>Security Report</h1>
+
+        <h2>Introduction</h2>
+        <p>The website delivered is a checkin based website that logs users locations (in latitude, longitude format), username, and the time of their submission. Checkins are added using the HTTP POST method on a route of the site, which allows the users to add their own username and lat/lng coordinates. The other route of the site gives the checkin logs in JSON format given a query (i.e. search for checkins by mchow).</p>
+        <p>I have been hired to test the security of this web app by attempting to penetrate the database through a variety of methods. By doing this I hope to better understand how a web app can be better protected from these issues.</p>
+        <div id=break></div>
+
+        <h2>Methodology</h2>
+        <p>To test this app I will use a variety of tools available to me. The first pass through that I have made was to explore the site with my browser (Chrome), and curl to get a feel for the operation of the site. When using curl I quickly began to play with posting requests, and immediately found that the input validation was lacking.</p>
+        <p></p>
+        <div id=break></div>
+
+        <h2>Abstract of Findings</h2>
+        <p>The first and most prominent issue that I found with the site is that it does not properly validate input. This is to say that it is easy to </p>
+
+        <h2>Issues Found</h2>
+        <ol>
+                <li> 
+                        <h3>Injection</h3>
+                        <ul>
+                        <li> <p>Location: /sendLocation checkin page when recieving the data from the user.</p> </li>
+                        <li> <p>Severity: This issue is catastrophic. Given the wide range of harm that can be inflicted using javascript scripts, a malicious attacker would be able to do anything from logging other user's inputs to changing the structure of the page. </p></li>
+                        <li> <p>Description: I located this issue within the first few minutes of using html</p></li>
+                        </ul>
+
+                </li>
+                <li> <h3>XSS Vulnerability in checkin</h3></li>
+                <li> <h3></h3></li>
+        </ol>
+                
+
+</body>
