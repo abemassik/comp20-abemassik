@@ -2,14 +2,16 @@ body {
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         color: #041e47;
         background-color: #f4f7fc;
-        border-style: inset;
+        border-style: ridge;
         border-width: 2px;
         padding: 5px;
         max-width: 100%;
 
 }
 
-
+img {
+        max-width: 100%;
+}
 
 #break {
         border-bottom: dashed;
